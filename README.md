@@ -68,3 +68,7 @@ Für die Fehlersuche lassen sich Rohdaten mitschreiben:
 | `Design` | App-Icon als SVG (hell/dunkel) |
 | `Spikes` | Machbarkeitstests aus der Entwicklung |
 | `TODO.md` | Plan, Erkenntnisse und offene Punkte |
+
+## Lizenz
+
+[MIT](LICENSE) © 2026 Roman Hohenberg
