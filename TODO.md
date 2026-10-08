@@ -112,7 +112,13 @@ Datenquellen (**Stand nach Spikes 2026-10-08**):
       Thunderbolt, viele kleine Dateien vs. eine große Datei, parallele Kopien,
       Abbrechen/Pausieren, Konflikt-Dialog („Ersetzen?“).
 - [ ] Performance: CPU-Last im Leerlauf ~0 %.
-- [ ] Signieren + Notarisieren, DMG, optional Sparkle-Updates.
+- [x] App-Icon (Tacho aus Fortschrittsbalken, `Design/`), App-Symbol hell;
+      `AppLogo` hell/dunkel folgt dem System (Fenster „Über CopySpeed“).
+- [x] DMG (create-dmg) + öffentliches Repo github.com/roman0803/CopySpeed (MIT),
+      Release v0.1.0 am 2026-10-08.
+- [ ] Developer-ID-Zertifikat + Notarisierung (aktuell nur Apple Development →
+      Gatekeeper-Warnung auf fremden Macs).
+- [ ] Optional: Sparkle-Updates.
 
 ## Risiken
 
