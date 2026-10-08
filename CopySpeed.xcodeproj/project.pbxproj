@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		045886748114A067A05B6274 /* FinderCopyReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A2CAA2912AB55820BBAB0 /* FinderCopyReader.swift */; };
+		339B6DB00C70A000AE1385ED /* SpeedTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B9C153388FCF9150F90BB1 /* SpeedTrackerTests.swift */; };
+		637FD1BD3F6B1DA51219FF5F /* ProgressTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED85FEB6E38BF2F1C67463B /* ProgressTextParser.swift */; };
+		71739CF434A3C274FE93F4FE /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8828E3217E172B1248A9F3 /* OverlayView.swift */; };
+		753582F2082072D39DF06C6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09E1CC3849D8522A4F455030 /* Assets.xcassets */; };
+		798FF5133D2F1BFA0E1BC854 /* CopyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B6A36CBC7F9EE7A5A1BF22 /* CopyMonitor.swift */; };
+		8BC06DC2CD00FE3ED69F9B5A /* OverlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18409EC086E6CC9F31041D31 /* OverlayController.swift */; };
+		B0DFBBAC9A5ED97161B54D48 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DDFC8E6B414856AA5D3C22 /* Preferences.swift */; };
+		B9D4154006FE5CAAA34AB180 /* SpeedFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B173CAF2B6C410D96726C4A /* SpeedFormatTests.swift */; };
+		CFC6DB440AAC23B5A093DA3B /* SpeedFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5AA2D7B23CBEF6D6B7944 /* SpeedFormat.swift */; };
+		DB22ACE1A8FBE32A64282443 /* ProgressTextParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78D144B9A37466D1428135A /* ProgressTextParserTests.swift */; };
+		DD1F322740510C5953DD4A02 /* CopySpeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4241BEF7CBDE9719D9478C /* CopySpeedApp.swift */; };
+		E70779A37583D2AACEC19A4F /* AX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A414543F478510B56871ECB /* AX.swift */; };
+		E71BFC4895B463B3DC79F64A /* SpeedTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62D3D86EEA9247A267723C0 /* SpeedTracker.swift */; };
+		ECE4C48C667006A3940D99DE /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9160C8F4336BA127E9A7B758 /* DebugLog.swift */; };
+		F9B52604F88EBC7354C40BAB /* MenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355619FF4D4DDC7AAF191E06 /* MenuContent.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1819218B08454E63A9073E48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EECDB925ED867848D4EFBC42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 158CA31B30E84F8DC3587F4F;
+			remoteInfo = CopySpeed;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09E1CC3849D8522A4F455030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A414543F478510B56871ECB /* AX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AX.swift; sourceTree = "<group>"; };
+		18409EC086E6CC9F31041D31 /* OverlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayController.swift; sourceTree = "<group>"; };
+		1B173CAF2B6C410D96726C4A /* SpeedFormatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedFormatTests.swift; sourceTree = "<group>"; };
+		355619FF4D4DDC7AAF191E06 /* MenuContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContent.swift; sourceTree = "<group>"; };
+		384E9B716EC8032EF009D1FF /* CopySpeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CopySpeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AA5AA2D7B23CBEF6D6B7944 /* SpeedFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedFormat.swift; sourceTree = "<group>"; };
+		81DDFC8E6B414856AA5D3C22 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		8C2A2CAA2912AB55820BBAB0 /* FinderCopyReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderCopyReader.swift; sourceTree = "<group>"; };
+		9160C8F4336BA127E9A7B758 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
+		A0B6A36CBC7F9EE7A5A1BF22 /* CopyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyMonitor.swift; sourceTree = "<group>"; };
+		A6B9C153388FCF9150F90BB1 /* SpeedTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedTrackerTests.swift; sourceTree = "<group>"; };
+		AED85FEB6E38BF2F1C67463B /* ProgressTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTextParser.swift; sourceTree = "<group>"; };
+		B62D3D86EEA9247A267723C0 /* SpeedTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedTracker.swift; sourceTree = "<group>"; };
+		E340423B88F62FCA4CDAA4B3 /* CopySpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CopySpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E78D144B9A37466D1428135A /* ProgressTextParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTextParserTests.swift; sourceTree = "<group>"; };
+		FC4241BEF7CBDE9719D9478C /* CopySpeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopySpeedApp.swift; sourceTree = "<group>"; };
+		FE8828E3217E172B1248A9F3 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		229E05B049C079D186AA394B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A0B6A36CBC7F9EE7A5A1BF22 /* CopyMonitor.swift */,
+				9160C8F4336BA127E9A7B758 /* DebugLog.swift */,
+				81DDFC8E6B414856AA5D3C22 /* Preferences.swift */,
+				AED85FEB6E38BF2F1C67463B /* ProgressTextParser.swift */,
+				3AA5AA2D7B23CBEF6D6B7944 /* SpeedFormat.swift */,
+				B62D3D86EEA9247A267723C0 /* SpeedTracker.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		37099A6D45BB6322688A7583 /* CopySpeed */ = {
+			isa = PBXGroup;
+			children = (
+				09E1CC3849D8522A4F455030 /* Assets.xcassets */,
+				6C8526142AC3C7224EBBA4CF /* Accessibility */,
+				4487B1408F58DDC7C0DC694E /* App */,
+				229E05B049C079D186AA394B /* Core */,
+				FA20520147BC80A9358D7863 /* Overlay */,
+			);
+			path = CopySpeed;
+			sourceTree = "<group>";
+		};
+		4487B1408F58DDC7C0DC694E /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FC4241BEF7CBDE9719D9478C /* CopySpeedApp.swift */,
+				355619FF4D4DDC7AAF191E06 /* MenuContent.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6C8526142AC3C7224EBBA4CF /* Accessibility */ = {
+			isa = PBXGroup;
+			children = (
+				0A414543F478510B56871ECB /* AX.swift */,
+				8C2A2CAA2912AB55820BBAB0 /* FinderCopyReader.swift */,
+			);
+			path = Accessibility;
+			sourceTree = "<group>";
+		};
+		737554502DC9CAA31BE54BEF /* CopySpeedTests */ = {
+			isa = PBXGroup;
+			children = (
+				E78D144B9A37466D1428135A /* ProgressTextParserTests.swift */,
+				1B173CAF2B6C410D96726C4A /* SpeedFormatTests.swift */,
+				A6B9C153388FCF9150F90BB1 /* SpeedTrackerTests.swift */,
+			);
+			path = CopySpeedTests;
+			sourceTree = "<group>";
+		};
+		B534FFEE5682731DB3181ECC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E340423B88F62FCA4CDAA4B3 /* CopySpeed.app */,
+				384E9B716EC8032EF009D1FF /* CopySpeedTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA88FA4105F0845C5AF8E4EE = {
+			isa = PBXGroup;
+			children = (
+				37099A6D45BB6322688A7583 /* CopySpeed */,
+				737554502DC9CAA31BE54BEF /* CopySpeedTests */,
+				B534FFEE5682731DB3181ECC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FA20520147BC80A9358D7863 /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				18409EC086E6CC9F31041D31 /* OverlayController.swift */,
+				FE8828E3217E172B1248A9F3 /* OverlayView.swift */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		158CA31B30E84F8DC3587F4F /* CopySpeed */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60C7360A5D3FDC164C157F6E /* Build configuration list for PBXNativeTarget "CopySpeed" */;
+			buildPhases = (
+				C8CD3F84D677A43DDE7CFEFE /* Sources */,
+				5D0362AB71495CAA7929E0D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CopySpeed;
+			packageProductDependencies = (
+			);
+			productName = CopySpeed;
+			productReference = E340423B88F62FCA4CDAA4B3 /* CopySpeed.app */;
+			productType = "com.apple.product-type.application";
+		};
+		763383B4EFBE45A42B9D296F /* CopySpeedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF377528886B9D9A9B1CBA78 /* Build configuration list for PBXNativeTarget "CopySpeedTests" */;
+			buildPhases = (
+				7F452470AC766DD1010F0051 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2CD3346A4900B805546F9974 /* PBXTargetDependency */,
+			);
+			name = CopySpeedTests;
+			packageProductDependencies = (
+			);
+			productName = CopySpeedTests;
+			productReference = 384E9B716EC8032EF009D1FF /* CopySpeedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EECDB925ED867848D4EFBC42 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					158CA31B30E84F8DC3587F4F = {
+						DevelopmentTeam = 2M4LLPLRLS;
+						ProvisioningStyle = Automatic;
+					};
+					763383B4EFBE45A42B9D296F = {
+						DevelopmentTeam = 2M4LLPLRLS;
+					};
+				};
+			};
+			buildConfigurationList = 94DFEED50B7D7EB5C70729B0 /* Build configuration list for PBXProject "CopySpeed" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = DA88FA4105F0845C5AF8E4EE;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B534FFEE5682731DB3181ECC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				158CA31B30E84F8DC3587F4F /* CopySpeed */,
+				763383B4EFBE45A42B9D296F /* CopySpeedTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5D0362AB71495CAA7929E0D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				753582F2082072D39DF06C6C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7F452470AC766DD1010F0051 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB22ACE1A8FBE32A64282443 /* ProgressTextParserTests.swift in Sources */,
+				B9D4154006FE5CAAA34AB180 /* SpeedFormatTests.swift in Sources */,
+				339B6DB00C70A000AE1385ED /* SpeedTrackerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8CD3F84D677A43DDE7CFEFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E70779A37583D2AACEC19A4F /* AX.swift in Sources */,
+				798FF5133D2F1BFA0E1BC854 /* CopyMonitor.swift in Sources */,
+				DD1F322740510C5953DD4A02 /* CopySpeedApp.swift in Sources */,
+				ECE4C48C667006A3940D99DE /* DebugLog.swift in Sources */,
+				045886748114A067A05B6274 /* FinderCopyReader.swift in Sources */,
+				F9B52604F88EBC7354C40BAB /* MenuContent.swift in Sources */,
+				8BC06DC2CD00FE3ED69F9B5A /* OverlayController.swift in Sources */,
+				71739CF434A3C274FE93F4FE /* OverlayView.swift in Sources */,
+				B0DFBBAC9A5ED97161B54D48 /* Preferences.swift in Sources */,
+				637FD1BD3F6B1DA51219FF5F /* ProgressTextParser.swift in Sources */,
+				CFC6DB440AAC23B5A093DA3B /* SpeedFormat.swift in Sources */,
+				E71BFC4895B463B3DC79F64A /* SpeedTracker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2CD3346A4900B805546F9974 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 158CA31B30E84F8DC3587F4F /* CopySpeed */;
+			targetProxy = 1819218B08454E63A9073E48 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4EB0323A040B70C52A421395 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2M4LLPLRLS;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.roman.copyspeed.tests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CopySpeed.app/Contents/MacOS/CopySpeed";
+			};
+			name = Debug;
+		};
+		751FE0F885F9687F39F6F8E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2M4LLPLRLS;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.roman.copyspeed.tests;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CopySpeed.app/Contents/MacOS/CopySpeed";
+			};
+			name = Release;
+		};
+		9330F6664214FA5BDA271DFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2M4LLPLRLS;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = CopySpeed;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Roman Hohenberg";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.roman.copyspeed;
+				PRODUCT_NAME = CopySpeed;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A39DE1C4BDB029E2B5374D3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DEAEEB2AD2813533F07A0AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		E2C2F3E50152A303C7266C72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2M4LLPLRLS;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = CopySpeed;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 Roman Hohenberg";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.roman.copyspeed;
+				PRODUCT_NAME = CopySpeed;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60C7360A5D3FDC164C157F6E /* Build configuration list for PBXNativeTarget "CopySpeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2C2F3E50152A303C7266C72 /* Debug */,
+				9330F6664214FA5BDA271DFE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		94DFEED50B7D7EB5C70729B0 /* Build configuration list for PBXProject "CopySpeed" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A39DE1C4BDB029E2B5374D3F /* Debug */,
+				DEAEEB2AD2813533F07A0AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DF377528886B9D9A9B1CBA78 /* Build configuration list for PBXNativeTarget "CopySpeedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EB0323A040B70C52A421395 /* Debug */,
+				751FE0F885F9687F39F6F8E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EECDB925ED867848D4EFBC42 /* Project object */;
+}

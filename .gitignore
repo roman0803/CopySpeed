@@ -1,0 +1,6 @@
+build/
+*.xcuserstate
+xcuserdata/
+Spikes/bin/
+tools/
+.DS_Store
