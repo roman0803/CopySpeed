@@ -106,6 +106,11 @@ Datenquellen (**Stand nach Spikes 2026-10-08**):
       bei Größenänderung, weggescrollte Zeilen ausblenden.
 - [ ] Offen (bewusst nicht umgesetzt): AX-Zeitlimit (`AXUIElementSetMessagingTimeout`) gegen Hänger,
       falls der Finder einfriert; Nachführen beim Ziehen bleibt systembedingt minimal verzögert.
+- [x] Beobachtet (Diagnose-Log, lokales HFS+-Disk-Image): 2026-10-08 viele 100-KB-Dateien ~12 MB/s
+      (Finder-Overhead pro Datei), 10-MB-Dateien ~420 MB/s; 2026-10-13 am Ende einer Einzelkopie zeigt der
+      Finder kurz „Kopieren von 0 Objekten nach …“.
+- [ ] Offen: Statustext-Parser kennt nur „von“/„of“ → Geschwindigkeit nur bei deutscher/englischer
+      Systemsprache. Idee: Bytes sprachunabhängig aus den beiden Zahl+Einheit-Paaren lesen.
 
 ## Phase 5 – Einstellungen & Extras
 
