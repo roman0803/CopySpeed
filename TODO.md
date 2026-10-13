@@ -133,6 +133,7 @@ Datenquellen (**Stand nach Spikes 2026-10-08**):
       `AppLogo` hell/dunkel folgt dem System (Fenster „Über CopySpeed“).
 - [x] DMG (create-dmg) + öffentliches Repo github.com/roman0803/CopySpeed (MIT),
       Release v0.1.0 am 2026-10-08.
+- [x] Release v0.2.0 am 2026-10-13 (Anzeige im Kopierfenster + Schublade).
 - [ ] Developer-ID-Zertifikat + Notarisierung (aktuell nur Apple Development →
       Gatekeeper-Warnung auf fremden Macs).
 - [ ] Optional: Sparkle-Updates.
