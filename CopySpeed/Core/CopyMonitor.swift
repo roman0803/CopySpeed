@@ -1,6 +1,15 @@
 import AppKit
 import Observation
 
+/// Lage einer Zeile im Kopierfenster – relativ zur linken oberen Fensterecke (Punkte, y nach unten).
+struct RowLayout: Equatable {
+    /// Vertikale Mitte der Statuszeile
+    let statusMidY: CGFloat
+    /// Rechter Rand des Statustexts – der größte bisher gesehene Wert dieses Vorgangs, damit unsere Zahl
+    /// nicht ein- und ausblendet, während Finder die Restzeit mal länger, mal kürzer formuliert.
+    let statusTextMaxX: CGFloat
+}
+
 /// Ein Kopiervorgang mit berechneter Geschwindigkeit.
 struct CopyOperation: Identifiable {
     let id: String
@@ -9,13 +18,22 @@ struct CopyOperation: Identifiable {
     let totalBytes: Double?
     let speed: Double?
     let average: Double?
+    let layout: RowLayout?
 }
 
 /// Ein Kopierfenster mit seinen Vorgängen.
 struct CopyWindow: Identifiable {
     let id: Int
+    /// Accessibility-Element des Fensters – für das schnelle Nachführen der Position
+    let element: AXUIElement?
     /// Rahmen in Quartz-Koordinaten
     let frame: CGRect
+    /// Vertikale Mitte der Titelzeile (Ampel-Knöpfe), relativ zur Fensteroberkante
+    let titleBarMidY: CGFloat
+    /// Ab hier ist die Titelzeile frei (rechts neben den Ampel-Knöpfen), relativ zum linken Fensterrand
+    let titleMinX: CGFloat
+    /// Sichtbarer Bereich der Vorgangsliste, fensterrelativ (nil = unbekannt)
+    let contentRect: CGRect?
     let operations: [CopyOperation]
     var totalSpeed: Double? {
         let speeds = operations.compactMap(\.speed)
@@ -32,6 +50,8 @@ final class CopyMonitor {
 
     @ObservationIgnored var onUpdate: (([CopyWindow]) -> Void)?
     @ObservationIgnored private var trackers: [String: SpeedTracker] = [:]
+    /// Größter bisher gesehener rechter Rand des Statustexts je Vorgang (fensterrelativ)
+    @ObservationIgnored private var statusExtents: [String: CGFloat] = [:]
     @ObservationIgnored private var timer: Timer?
 
     static let interval: TimeInterval = 0.5
@@ -46,15 +66,24 @@ final class CopyMonitor {
     func start() {
         guard timer == nil else { return }
         tick()
-        timer = Timer.scheduledTimer(withTimeInterval: Self.interval, repeats: true) { [weak self] _ in
+        let timer = Timer(timeInterval: Self.interval, repeats: true) { [weak self] _ in
             MainActor.assumeIsolated { self?.tick() }
         }
-        timer?.tolerance = 0.05
+        timer.tolerance = 0.05
+        // .common: läuft auch weiter, während das Menüleisten-Menü offen ist.
+        RunLoop.main.add(timer, forMode: .common)
+        self.timer = timer
     }
 
     func stop() {
         timer?.invalidate()
         timer = nil
+    }
+
+    /// Sofort neu auslesen, z. B. wenn sich die Fenstergröße geändert hat (Vorgang dazu/fertig).
+    func refreshNow() {
+        guard timer != nil else { return }
+        tick()
     }
 
     private func tick() {
@@ -70,6 +99,7 @@ final class CopyMonitor {
         var result: [CopyWindow] = []
 
         for (wi, snapshot) in FinderCopyReader.read().enumerated() {
+            let origin = snapshot.frame.origin
             var titleCount: [String: Int] = [:]
             let ops: [CopyOperation] = snapshot.operations.map { op in
                 // Schlüssel aus Fenster + Titel ohne Zahlen: Der Finder zählt im Titel die
@@ -95,18 +125,38 @@ final class CopyMonitor {
                     speed=\(tracker.current.map { String(format: "%.0f", $0) } ?? "-")
                     """)
 
+                var layout: RowLayout?
+                if let status = op.statusFrame, let textMaxX = op.statusTextMaxX {
+                    let extent = max(statusExtents[key] ?? 0, textMaxX - origin.x)
+                    statusExtents[key] = extent
+                    layout = RowLayout(statusMidY: status.midY - origin.y, statusTextMaxX: extent)
+                }
+                DebugLog.write("""
+                    [\(key)] layout bar=\(op.barFrame.map { "\($0)" } ?? "-") status=\(op.statusFrame.map { "\($0)" } ?? "-") \
+                    textMaxX=\(op.statusTextMaxX.map { "\($0)" } ?? "-") window=\(snapshot.frame) close=\(snapshot.closeButtonFrame.map { "\($0)" } ?? "-") \
+                    lightsMaxX=\(snapshot.trafficLightsMaxX.map { "\($0)" } ?? "-") content=\(snapshot.contentFrame.map { "\($0)" } ?? "-")
+                    """)
+
                 return CopyOperation(
                     id: key,
                     name: ProgressTextParser.itemName(in: op.title) ?? op.title,
                     doneBytes: done,
                     totalBytes: total,
                     speed: tracker.current,
-                    average: tracker.average)
+                    average: tracker.average,
+                    layout: layout)
             }
-            result.append(CopyWindow(id: wi, frame: snapshot.frame, operations: ops))
+            // Ohne Knöpfe: Maße einer üblichen Titelzeile annehmen.
+            let titleBarMidY = snapshot.closeButtonFrame.map { $0.midY - origin.y } ?? 18
+            let titleMinX = (snapshot.trafficLightsMaxX.map { $0 - origin.x } ?? 70) + 12
+            let contentRect = snapshot.contentFrame.map { $0.offsetBy(dx: -origin.x, dy: -origin.y) }
+            result.append(CopyWindow(id: wi, element: snapshot.element, frame: snapshot.frame,
+                                     titleBarMidY: titleBarMidY, titleMinX: titleMinX,
+                                     contentRect: contentRect, operations: ops))
         }
 
         trackers = trackers.filter { seen.contains($0.key) }
+        statusExtents = statusExtents.filter { seen.contains($0.key) }
         publish(result)
     }
 

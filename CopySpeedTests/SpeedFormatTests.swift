@@ -17,6 +17,12 @@ final class SpeedFormatTests: XCTestCase {
         XCTAssertTrue(SpeedFormat.speed(2.5e9, unit: .megabits).hasSuffix("Gbit/s"))
     }
 
+    func testCompactDropsDecimalFrom100MBps() {
+        XCTAssertEqual(digitsOnly(SpeedFormat.speed(313.14e6, unit: .megabytes, compact: true)), "313")
+        XCTAssertEqual(digitsOnly(SpeedFormat.speed(99.94e6, unit: .megabytes, compact: true)), "999")
+        XCTAssertEqual(digitsOnly(SpeedFormat.speed(313.14e6, unit: .megabytes)), "3131")
+    }
+
     func testMissingValue() {
         XCTAssertEqual(SpeedFormat.speed(nil, unit: .both), "…")
     }

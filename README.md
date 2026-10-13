@@ -12,7 +12,14 @@
 ---
 
 Das Kopierfenster von macOS zeigt nur die verbleibende Zeit, aber nie, wie schnell gerade kopiert wird.
-CopySpeed dockt eine kleine Anzeige unter das Kopierfenster an:
+CopySpeed ergänzt das – wahlweise auf zwei Arten (Menü → „Anzeige“):
+
+- **Im Kopierfenster** (Standard): Die Geschwindigkeit erscheint rechts in der Titelzeile neben den
+  Ampel-Knöpfen, bei mehreren Kopien als Summe – und zusätzlich am Ende jeder Statuszeile.
+- **Unter dem Kopierfenster**: Eine Schublade schaut unter dem Fenster hervor und zeigt Name,
+  Geschwindigkeit und Durchschnitt jeder Kopie.
+
+Dazu:
 
 - **Aktuelle Geschwindigkeit** (über 3 s geglättet) und **Durchschnitt** pro Kopiervorgang
 - **Gesamtsumme**, wenn mehrere Kopien gleichzeitig laufen
@@ -39,8 +46,9 @@ CopySpeed dockt eine kleine Anzeige unter das Kopierfenster an:
 CopySpeed liest das Finder-Kopierfenster (`AXWindow`, Kennung `Progress`) alle 0,5 s über die
 Accessibility-API aus. Pro Vorgang werden Titel, Fortschrittsbalken (0…1) und Statustext
 („2,00 GB von 3,74 GB …“) gelesen. Übertragene Bytes = Balkenwert × Gesamtgröße; daraus ergibt sich die
-Geschwindigkeit. Die Anzeige ist ein rahmenloses `NSPanel`, das direkt über dem Kopierfenster einsortiert
-wird und Klicks durchlässt.
+Geschwindigkeit. Den Finder selbst verändert CopySpeed nicht: Die Anzeige ist ein rahmenloses, durchsichtiges
+`NSPanel`, das Klicks durchlässt und direkt über (bzw. als Schublade unter) dem Kopierfenster einsortiert wird.
+Solange ein Kopierfenster offen ist, folgt es dessen Position 30-mal pro Sekunde.
 
 Es werden keine Daten gesammelt oder übertragen, und CopySpeed greift nicht auf Dateiinhalte zu.
 

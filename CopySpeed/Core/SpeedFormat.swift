@@ -14,19 +14,21 @@ enum SpeedUnit: String, CaseIterable, Identifiable {
 }
 
 enum SpeedFormat {
-    static func speed(_ bytesPerSecond: Double?, unit: SpeedUnit) -> String {
+    /// - Parameter compact: Ab 100 MB/s ohne Nachkommastelle („313 MB/s“) – für knappen Platz.
+    static func speed(_ bytesPerSecond: Double?, unit: SpeedUnit, compact: Bool = false) -> String {
         guard let v = bytesPerSecond, v.isFinite else { return "…" }
         let v0 = max(v, 0)
         switch unit {
-        case .megabytes: return bytesPart(v0)
+        case .megabytes: return bytesPart(v0, compact: compact)
         case .megabits: return bitsPart(v0)
-        case .both: return "\(bytesPart(v0)) · \(bitsPart(v0))"
+        case .both: return "\(bytesPart(v0, compact: compact)) · \(bitsPart(v0))"
         }
     }
 
-    private static func bytesPart(_ v: Double) -> String {
+    private static func bytesPart(_ v: Double, compact: Bool) -> String {
         if v < 1e6 { return "\(fmt(v / 1e3, digits: 0)) KB/s" }
-        return "\(fmt(v / 1e6, digits: 1)) MB/s"
+        let mb = v / 1e6
+        return "\(fmt(mb, digits: compact && mb >= 100 ? 0 : 1)) MB/s"
     }
 
     private static func bitsPart(_ v: Double) -> String {

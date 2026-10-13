@@ -1,4 +1,4 @@
-import Foundation
+import AppKit
 
 /// Schreibt Rohdaten aus dem Kopierfenster nach `~/Library/Logs/CopySpeed/debug.log`.
 ///
@@ -20,6 +20,16 @@ enum DebugLog {
         _ = try? h?.seekToEnd()
         return h
     }()
+
+    /// Speichert den Inhalt einer View als PNG im Log-Ordner (zum Prüfen des Overlay-Layouts).
+    @MainActor
+    static func snapshot(_ view: NSView, name: String) {
+        guard isEnabled, view.bounds.width > 0, view.bounds.height > 0,
+              let rep = view.bitmapImageRepForCachingDisplay(in: view.bounds) else { return }
+        view.cacheDisplay(in: view.bounds, to: rep)
+        try? rep.representation(using: .png, properties: [:])?
+            .write(to: url.deletingLastPathComponent().appending(path: "\(name).png"))
+    }
 
     static func write(_ line: @autoclosure () -> String) {
         guard isEnabled else { return }

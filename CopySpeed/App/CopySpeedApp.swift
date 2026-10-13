@@ -22,8 +22,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // Als Test-Host nichts starten (kein Berechtigungsdialog, keine Panels).
         guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil else { return }
 
+        DebugLog.write("Start, Bedienungshilfen-Freigabe: \(AX.isTrusted)")
         if !AX.isTrusted { AX.requestTrust() }
         monitor.onUpdate = { [overlay] windows in overlay.update(windows) }
+        overlay.onNeedsRefresh = { [monitor] in monitor.refreshNow() }
         monitor.start()
     }
 }

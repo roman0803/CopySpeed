@@ -43,6 +43,20 @@ enum AX {
         return CGRect(origin: p, size: s)
     }
 
+    /// Rahmen des tatsächlich gezeichneten Texts (Quartz-Koordinaten) – das Textfeld selbst ist oft breiter.
+    static func textBounds(_ e: AXUIElement) -> CGRect? {
+        guard let count = number(e, kAXNumberOfCharactersAttribute), count > 0 else { return nil }
+        var range = CFRange(location: 0, length: Int(count))
+        guard let rangeValue = AXValueCreate(.cfRange, &range) else { return nil }
+        var result: CFTypeRef?
+        guard AXUIElementCopyParameterizedAttributeValue(e, kAXBoundsForRangeParameterizedAttribute as CFString,
+                                                         rangeValue, &result) == .success,
+              let value = result, CFGetTypeID(value) == AXValueGetTypeID() else { return nil }
+        var rect = CGRect.zero
+        guard AXValueGetValue(value as! AXValue, .cgRect, &rect), rect.width > 0 else { return nil }
+        return rect
+    }
+
     static func findAll(_ e: AXUIElement, role wanted: String, maxDepth: Int = 8, depth: Int = 0) -> [AXUIElement] {
         var out: [AXUIElement] = []
         if role(e) == wanted { out.append(e) }

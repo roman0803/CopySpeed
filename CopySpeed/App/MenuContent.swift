@@ -24,6 +24,7 @@ struct MenuContent: View {
     let monitor: CopyMonitor
     @AppStorage(Preferences.showInMenuBarKey) private var showInMenuBar = true
     @AppStorage(Preferences.unitKey) private var unit: SpeedUnit = .both
+    @AppStorage(Preferences.overlayModeKey) private var overlayMode: OverlayMode = .inWindow
     @State private var launchAtLogin = SMAppService.mainApp.status == .enabled
 
     var body: some View {
@@ -39,6 +40,9 @@ struct MenuContent: View {
             Divider()
         }
 
+        Picker("Anzeige", selection: $overlayMode) {
+            ForEach(OverlayMode.allCases) { Text($0.label).tag($0) }
+        }
         Picker("Einheit", selection: $unit) {
             ForEach(SpeedUnit.allCases) { Text($0.label).tag($0) }
         }

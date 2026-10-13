@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		045886748114A067A05B6274 /* FinderCopyReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A2CAA2912AB55820BBAB0 /* FinderCopyReader.swift */; };
+		0EB65B1A66784CD0466D8760 /* InWindowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8258400C2E7E1BA95AFA1241 /* InWindowLayout.swift */; };
+		1BB05C9A1D95F592B3946BEA /* InWindowLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F0485BBA148021510DCE3B /* InWindowLayoutTests.swift */; };
 		339B6DB00C70A000AE1385ED /* SpeedTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B9C153388FCF9150F90BB1 /* SpeedTrackerTests.swift */; };
 		637FD1BD3F6B1DA51219FF5F /* ProgressTextParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED85FEB6E38BF2F1C67463B /* ProgressTextParser.swift */; };
 		71739CF434A3C274FE93F4FE /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8828E3217E172B1248A9F3 /* OverlayView.swift */; };
@@ -44,6 +46,7 @@
 		384E9B716EC8032EF009D1FF /* CopySpeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CopySpeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA5AA2D7B23CBEF6D6B7944 /* SpeedFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedFormat.swift; sourceTree = "<group>"; };
 		81DDFC8E6B414856AA5D3C22 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		8258400C2E7E1BA95AFA1241 /* InWindowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InWindowLayout.swift; sourceTree = "<group>"; };
 		8C2A2CAA2912AB55820BBAB0 /* FinderCopyReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderCopyReader.swift; sourceTree = "<group>"; };
 		9160C8F4336BA127E9A7B758 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
 		A0B6A36CBC7F9EE7A5A1BF22 /* CopyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyMonitor.swift; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		AED85FEB6E38BF2F1C67463B /* ProgressTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTextParser.swift; sourceTree = "<group>"; };
 		B62D3D86EEA9247A267723C0 /* SpeedTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedTracker.swift; sourceTree = "<group>"; };
 		E340423B88F62FCA4CDAA4B3 /* CopySpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CopySpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3F0485BBA148021510DCE3B /* InWindowLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InWindowLayoutTests.swift; sourceTree = "<group>"; };
 		E78D144B9A37466D1428135A /* ProgressTextParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTextParserTests.swift; sourceTree = "<group>"; };
 		FC4241BEF7CBDE9719D9478C /* CopySpeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopySpeedApp.swift; sourceTree = "<group>"; };
 		FE8828E3217E172B1248A9F3 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
@@ -62,6 +66,7 @@
 			children = (
 				A0B6A36CBC7F9EE7A5A1BF22 /* CopyMonitor.swift */,
 				9160C8F4336BA127E9A7B758 /* DebugLog.swift */,
+				8258400C2E7E1BA95AFA1241 /* InWindowLayout.swift */,
 				81DDFC8E6B414856AA5D3C22 /* Preferences.swift */,
 				AED85FEB6E38BF2F1C67463B /* ProgressTextParser.swift */,
 				3AA5AA2D7B23CBEF6D6B7944 /* SpeedFormat.swift */,
@@ -103,6 +108,7 @@
 		737554502DC9CAA31BE54BEF /* CopySpeedTests */ = {
 			isa = PBXGroup;
 			children = (
+				E3F0485BBA148021510DCE3B /* InWindowLayoutTests.swift */,
 				E78D144B9A37466D1428135A /* ProgressTextParserTests.swift */,
 				1B173CAF2B6C410D96726C4A /* SpeedFormatTests.swift */,
 				A6B9C153388FCF9150F90BB1 /* SpeedTrackerTests.swift */,
@@ -230,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BB05C9A1D95F592B3946BEA /* InWindowLayoutTests.swift in Sources */,
 				DB22ACE1A8FBE32A64282443 /* ProgressTextParserTests.swift in Sources */,
 				B9D4154006FE5CAAA34AB180 /* SpeedFormatTests.swift in Sources */,
 				339B6DB00C70A000AE1385ED /* SpeedTrackerTests.swift in Sources */,
@@ -245,6 +252,7 @@
 				DD1F322740510C5953DD4A02 /* CopySpeedApp.swift in Sources */,
 				ECE4C48C667006A3940D99DE /* DebugLog.swift in Sources */,
 				045886748114A067A05B6274 /* FinderCopyReader.swift in Sources */,
+				0EB65B1A66784CD0466D8760 /* InWindowLayout.swift in Sources */,
 				F9B52604F88EBC7354C40BAB /* MenuContent.swift in Sources */,
 				8BC06DC2CD00FE3ED69F9B5A /* OverlayController.swift in Sources */,
 				71739CF434A3C274FE93F4FE /* OverlayView.swift in Sources */,

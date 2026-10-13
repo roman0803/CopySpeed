@@ -90,6 +90,23 @@ Datenquellen (**Stand nach Spikes 2026-10-08**):
 - [ ] Optional: Mini-Sparkline der Geschwindigkeit.
 - [x] Ausblenden, wenn Kopie fertig / Fenster weg.
 
+## Phase 4b – Anzeige im Kopierfenster (2026-10-13)
+
+- [x] Modus „Im Kopierfenster“ (Standard): durchsichtiges Panel exakt über dem Kopierfenster.
+      Titelzeile rechts neben den Ampel-Knöpfen: Einzelkopie → Geschwindigkeit + Ø, mehrere → „Gesamt“.
+      Mehrere Kopien: zusätzlich Wert am Ende jeder Statuszeile (kompakt, „321 MB/s“), wenn er passt.
+- [x] Modus „Unter dem Kopierfenster“: Schublade, obere 16 pt hinter dem Fenster, immer mit Namen;
+      weicht nach oben aus, wenn unten kein Platz ist.
+- [x] Nachführen mit 30 Hz, solange ein Kopierfenster sichtbar ist; Neu-Einsortieren bei Fokuswechsel.
+- [x] Messwerte (macOS 27.2): Ampel-Knöpfe enden bei x = 70, Titelzeilen-Mitte y = 16, Liste ab y = 32,
+      Zeilen 61 pt; längster üblicher Statustext endet bei ≈ 316 pt → rechter Rand 12 pt, Abstand 6 pt.
+      Textgrenzen exakt per `AXBoundsForRange`.
+- [x] Review (3 Prüfer + Gegenprüfer): 5 Funde behoben – Titel-Breitenlimit mit Kürzungsstufen,
+      Vorlage für ≥ 1 GB/s, Puffer gegen Flackern (größter Statustext je Vorgang), sofortiges Neu-Auslesen
+      bei Größenänderung, weggescrollte Zeilen ausblenden.
+- [ ] Offen (bewusst nicht umgesetzt): AX-Zeitlimit (`AXUIElementSetMessagingTimeout`) gegen Hänger,
+      falls der Finder einfriert; Nachführen beim Ziehen bleibt systembedingt minimal verzögert.
+
 ## Phase 5 – Einstellungen & Extras
 
 - [x] Einheit + Start bei Anmeldung im Menü (vorerst kein eigenes Fenster).
