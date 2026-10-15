@@ -40,6 +40,10 @@ final class OverlayController {
         var windowNumber: Int
         /// Größe des Panel-Inhalts laut letztem Rendern
         var contentSize: CGSize = .zero
+        /// Welche Zeilen-Labels im Kopierfenster gerade gezeigt werden (mit Hysterese)
+        var rowVisibility = RowVisibility()
+        /// Je gezeigter Zeile: bis wohin Finders Statustext reichen darf (fensterrelativ)
+        var rowLimits: [String: CGFloat] = [:]
 
         init(window: CopyWindow, mode: OverlayMode, unit: SpeedUnit, windowNumber: Int) {
             self.window = window
@@ -61,6 +65,7 @@ final class OverlayController {
 
     private var entries: [Int: Entry] = [:]
     private var tracker: Timer?
+    private var trackTick = 0
     /// Fordert sofort frische Daten an (Fenstergröße hat sich geändert → Zeilen haben sich verschoben).
     var onNeedsRefresh: (() -> Void)?
     private var lastFrontmostPID: pid_t?
@@ -92,7 +97,7 @@ final class OverlayController {
             entry.windowNumber = screenWindow.id
             entry.panel.hasShadow = mode == .drawer // Im Fenster: kein Schatten um die Schrift.
 
-            render(entry)
+            render(entry, newSample: true)
             order(entry)
             DebugLog.snapshot(entry.host, name: "overlay-\(mode.rawValue)-\(Int(window.frame.height))")
         }
@@ -106,7 +111,9 @@ final class OverlayController {
     }
 
     /// Baut den Inhalt neu auf, misst ihn und platziert das Panel (alle 0,5 s oder bei Größenänderung).
-    private func render(_ entry: Entry) {
+    /// - Parameter newSample: `true` bei frischen Daten vom CopyMonitor – nur dann zählt die Hysterese
+    ///   der Zeilen-Labels weiter.
+    private func render(_ entry: Entry, newSample: Bool = false) {
         switch entry.mode {
         case .inWindow:
             let layout = InWindowLayout.compute(
@@ -116,7 +123,14 @@ final class OverlayController {
                     Self.width(of: primary, font: InWindowFonts.titlePrimary)
                         + (secondary.map { Self.width(of: $0, font: InWindowFonts.titleSecondary) + InWindowFonts.titleSpacing } ?? 0)
                 })
-            entry.host.rootView = OverlayRoot(content: .inWindow(layout, size: entry.frame.size))
+            if newSample {
+                entry.rowVisibility.update(fits: Dictionary(layout.rows.map { ($0.id, $0.fits) }, uniquingKeysWith: { a, _ in a }))
+            }
+            // Gezeigt wird nur, was laut Hysterese sichtbar ist UND gerade passt.
+            let rows = layout.rows.filter { $0.fits && entry.rowVisibility.shown.contains($0.id) }
+            entry.rowLimits = Dictionary(rows.map { ($0.id, $0.maxStatusTextX) }, uniquingKeysWith: { a, _ in a })
+            entry.host.rootView = OverlayRoot(content: .inWindow(InWindowLayout.Result(title: layout.title, rows: rows),
+                                                                 size: entry.frame.size))
             entry.contentSize = entry.frame.size
 
         case .drawer:
@@ -188,6 +202,11 @@ final class OverlayController {
             if let onNeedsRefresh { onNeedsRefresh() } else { entries.values.forEach { render($0) } }
         }
 
+        // 10 ×/s: Wird Finders Statustext neben einer sichtbaren Zahl länger, sofort ausblenden –
+        // nicht erst bei der nächsten Abfrage (bis zu 0,5 s Überlappung).
+        trackTick += 1
+        if trackTick % 3 == 0 { recheckRowLabels() }
+
         // Finder holt das Kopierfenster nach vorne → Panel wieder direkt darüber/darunter einsortieren.
         let frontmost = NSWorkspace.shared.frontmostApplication?.processIdentifier
         let focused = FinderCopyReader.finderApp()
@@ -202,6 +221,20 @@ final class OverlayController {
             lastFrontmostPID = frontmost
             lastFocusedWindow = focused
             for entry in entries.values where entry.panel.isVisible { order(entry) }
+        }
+    }
+
+    private func recheckRowLabels() {
+        for entry in entries.values where entry.mode == .inWindow && entry.panel.isVisible && !entry.rowLimits.isEmpty {
+            var hidden = false
+            for (id, limit) in entry.rowLimits {
+                guard let element = entry.window.operations.first(where: { $0.id == id })?.statusElement,
+                      let bounds = AX.textBounds(element),
+                      bounds.maxX - entry.frame.minX > limit else { continue }
+                entry.rowVisibility.hide(id)
+                hidden = true
+            }
+            if hidden { render(entry) }
         }
     }
 

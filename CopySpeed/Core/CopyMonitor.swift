@@ -5,8 +5,7 @@ import Observation
 struct RowLayout: Equatable {
     /// Vertikale Mitte der Statuszeile
     let statusMidY: CGFloat
-    /// Rechter Rand des Statustexts – der größte bisher gesehene Wert dieses Vorgangs, damit unsere Zahl
-    /// nicht ein- und ausblendet, während Finder die Restzeit mal länger, mal kürzer formuliert.
+    /// Rechter Rand des aktuell gezeichneten Statustexts
     let statusTextMaxX: CGFloat
 }
 
@@ -19,6 +18,8 @@ struct CopyOperation: Identifiable {
     let speed: Double?
     let average: Double?
     let layout: RowLayout?
+    /// Accessibility-Element des Finder-Statustexts (für das schnelle Nachprüfen im Overlay)
+    var statusElement: AXUIElement? = nil
 }
 
 /// Ein Kopierfenster mit seinen Vorgängen.
@@ -50,8 +51,6 @@ final class CopyMonitor {
 
     @ObservationIgnored var onUpdate: (([CopyWindow]) -> Void)?
     @ObservationIgnored private var trackers: [String: SpeedTracker] = [:]
-    /// Größter bisher gesehener rechter Rand des Statustexts je Vorgang (fensterrelativ)
-    @ObservationIgnored private var statusExtents: [String: CGFloat] = [:]
     @ObservationIgnored private var timer: Timer?
 
     static let interval: TimeInterval = 0.5
@@ -127,9 +126,7 @@ final class CopyMonitor {
 
                 var layout: RowLayout?
                 if let status = op.statusFrame, let textMaxX = op.statusTextMaxX {
-                    let extent = max(statusExtents[key] ?? 0, textMaxX - origin.x)
-                    statusExtents[key] = extent
-                    layout = RowLayout(statusMidY: status.midY - origin.y, statusTextMaxX: extent)
+                    layout = RowLayout(statusMidY: status.midY - origin.y, statusTextMaxX: textMaxX - origin.x)
                 }
                 DebugLog.write("""
                     [\(key)] layout bar=\(op.barFrame.map { "\($0)" } ?? "-") status=\(op.statusFrame.map { "\($0)" } ?? "-") \
@@ -144,7 +141,8 @@ final class CopyMonitor {
                     totalBytes: total,
                     speed: tracker.current,
                     average: tracker.average,
-                    layout: layout)
+                    layout: layout,
+                    statusElement: op.statusElement)
             }
             // Ohne Knöpfe: Maße einer üblichen Titelzeile annehmen.
             let titleBarMidY = snapshot.closeButtonFrame.map { $0.midY - origin.y } ?? 18
@@ -156,7 +154,6 @@ final class CopyMonitor {
         }
 
         trackers = trackers.filter { seen.contains($0.key) }
-        statusExtents = statusExtents.filter { seen.contains($0.key) }
         publish(result)
     }
 

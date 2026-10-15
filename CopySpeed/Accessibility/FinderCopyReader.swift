@@ -13,6 +13,8 @@ struct CopyOperationSnapshot {
     let statusFrame: CGRect?
     /// Rechter Rand des tatsächlich gezeichneten Statustexts
     let statusTextMaxX: CGFloat?
+    /// Accessibility-Element des Statustexts – für das schnelle Nachprüfen zwischen zwei Abfragen
+    let statusElement: AXUIElement?
 }
 
 /// Momentaufnahme eines Finder-Kopierfensters.
@@ -100,7 +102,8 @@ enum FinderCopyReader {
                 fraction: fraction,
                 barFrame: AX.frame(bar),
                 statusFrame: statusFrame,
-                statusTextMaxX: after.flatMap { textMaxX(of: $0, text: status, fieldFrame: statusFrame) })
+                statusTextMaxX: after.flatMap { textMaxX(of: $0, text: status, fieldFrame: statusFrame) },
+                statusElement: after)
         }
     }
 

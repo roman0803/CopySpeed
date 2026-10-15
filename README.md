@@ -29,7 +29,9 @@ CopySpeed ergänzt das – ohne den Finder zu verändern.
   - bei **einer** Kopie deren Geschwindigkeit und der Durchschnitt (Ø),
   - bei **mehreren** Kopien die Gesamtsumme („Gesamt …“).
 - Bei mehreren Kopien zusätzlich die Geschwindigkeit **am Ende jeder Statuszeile** – kompakt
-  („321 MB/s“) und nur, wenn sie neben den Finder-Text passt.
+  („321 MB/s“, „1,25 GB/s“, „2,1 Gbit/s“) und nur, wenn sie neben den Finder-Text passt. Ist Finders Text
+  gerade zu lang (z. B. „Verbleibende Zeit berechnen …“), wird die Zahl ausgeblendet und erscheint wieder,
+  sobald der Text 1–1,5 s lang passt. Die Summe in der Titelzeile bleibt immer sichtbar.
 - Wird der Platz in der Titelzeile knapp (z. B. „MB/s und Mbit/s“ bei sehr schnellen SSDs), kürzt sich
   der Text automatisch – bei einer Kopie erst ohne Ø, dann nur noch eine Einheit; bei mehreren Kopien
   erst nur noch eine Einheit, dann ohne „Gesamt“.

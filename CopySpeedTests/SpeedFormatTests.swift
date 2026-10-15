@@ -23,6 +23,27 @@ final class SpeedFormatTests: XCTestCase {
         XCTAssertEqual(digitsOnly(SpeedFormat.speed(313.14e6, unit: .megabytes)), "3131")
     }
 
+    func testCompactSwitchesToGigaUnits() {
+        XCTAssertTrue(SpeedFormat.speed(1.25e9, unit: .megabytes, compact: true).hasSuffix("GB/s"))
+        XCTAssertEqual(digitsOnly(SpeedFormat.speed(1.25e9, unit: .megabytes, compact: true)), "125")
+        XCTAssertTrue(SpeedFormat.speed(150e6, unit: .megabits, compact: true).hasSuffix("Gbit/s"))
+        XCTAssertTrue(SpeedFormat.speed(110e6, unit: .megabits, compact: true).hasSuffix("Mbit/s"))
+        XCTAssertTrue(SpeedFormat.speed(150e6, unit: .megabits).hasSuffix("Mbit/s"), "Nicht kompakt bleibt Mbit/s bis 10 Gbit/s")
+    }
+
+    func testCompactIsNeverWiderThanItsTemplate() {
+        let font = InWindowFonts.row
+        func w(_ s: String) -> CGFloat { ceil((s as NSString).size(withAttributes: [.font: font]).width) }
+        let mbTemplate = w(SpeedFormat.speed(88.8e6, unit: .megabytes, compact: true))
+        for v in [1e6, 9.9e6, 88.8e6, 99.9e6, 313e6, 999e6, 1.25e9, 8.88e9] {
+            XCTAssertLessThanOrEqual(w(SpeedFormat.speed(v, unit: .megabytes, compact: true)), mbTemplate, "\(v)")
+        }
+        let mbitTemplate = w(SpeedFormat.speed(111e6, unit: .megabits, compact: true))
+        for v in [1e6, 12.5e6, 111e6, 124e6, 125e6, 1.2e9] {
+            XCTAssertLessThanOrEqual(w(SpeedFormat.speed(v, unit: .megabits, compact: true)), mbitTemplate, "\(v)")
+        }
+    }
+
     func testMissingValue() {
         XCTAssertEqual(SpeedFormat.speed(nil, unit: .both), "…")
     }

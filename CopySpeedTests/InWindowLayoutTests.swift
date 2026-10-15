@@ -41,20 +41,49 @@ final class InWindowLayoutTests: XCTestCase {
         XCTAssertTrue(r.rows.allSatisfy { $0.trailingX == r.title.trailingX }, "Bündig mit der Titelzeile")
     }
 
-    func testRowLabelIsDroppedWhenStatusTextIsTooLong() {
+    private func fits(_ r: InWindowLayout.Result, _ id: String) -> Bool? {
+        r.rows.first { $0.id == id }?.fits
+    }
+
+    func testRowLabelDoesNotFitWhenStatusTextIsTooLong() {
         let r = compute(window([op("a", speed: 60e6, textMaxX: 360), op("b", speed: 50e6)]), unit: .megabytes)
-        XCTAssertEqual(r.rows.map(\.id), ["b"])
+        XCTAssertEqual(fits(r, "a"), false)
+        XCTAssertEqual(fits(r, "b"), true)
     }
 
     func testFitDoesNotDependOnCurrentValue() {
-        // Gleiche Entscheidung für alle Werte – auch über 1 GB/s, wo ein Tausenderpunkt dazukommt.
-        for textMaxX: CGFloat in [290, 310, 320, 330] {
-            var decisions = Set<Bool>()
-            for speed in [nil, 5e6, 117.4e6, 1.2e9, 8.8e9] {
-                let r = compute(window([op("a", speed: speed, textMaxX: textMaxX), op("b", speed: 1e6)]), unit: .megabytes)
-                decisions.insert(r.rows.contains { $0.id == "a" })
+        // Gleiche Entscheidung für alle Werte – auch ab 1 GB/s bzw. 1 Gbit/s (kompakt „1,20 GB/s“, „9,6 Gbit/s“).
+        let speedsByUnit: [(SpeedUnit, [Double?])] = [
+            (.megabytes, [nil, 5e6, 88.8e6, 117.4e6, 999e6, 1.2e9, 8.8e9]),
+            (.megabits, [nil, 5e6, 88.8e6, 117.4e6, 999e6, 1.2e9]),
+        ]
+        for (unit, speeds) in speedsByUnit {
+            for textMaxX: CGFloat in [290, 310, 320, 325, 330, 340] {
+                var decisions = Set<Bool?>()
+                for speed in speeds {
+                    let r = compute(window([op("a", speed: speed, textMaxX: textMaxX), op("b", speed: 1e6)]), unit: unit)
+                    decisions.insert(fits(r, "a"))
+                }
+                XCTAssertEqual(decisions.count, 1, "\(unit) textMaxX=\(textMaxX): Label springt je nach Wert")
             }
-            XCTAssertEqual(decisions.count, 1, "textMaxX=\(textMaxX): Label springt je nach Wert")
+        }
+    }
+
+    func testRealFinderTextsFromUserScreenshot() {
+        // Textenden gemessen bzw. mit der Finder-Schrift (11 pt) berechnet + gemessener AX-Versatz (+11,6 pt).
+        let realMeasure: (String) -> CGFloat = { ceil(($0 as NSString).size(withAttributes: [.font: InWindowFonts.row]).width) }
+        let cases: [(String, CGFloat, Bool)] = [
+            ("2,21 GB von 3,92 GB - weniger als eine Minute", 315.6, true),
+            ("318,8 MB von 26,85 GB - Ungefähr 13 Minuten", 317.6, true),
+            ("220,5 MB von 3,92 GB - weniger als eine Minute", 325.6, true),
+            ("12,3 MB von 26,85 GB - Verbleibende Zeit berechnen …", 364.6, false),
+        ]
+        for unit in [SpeedUnit.megabytes, .megabits, .both] {
+            for (text, textMaxX, expected) in cases {
+                let r = InWindowLayout.compute(window: window([op("a", speed: 33.6e6, textMaxX: textMaxX), op("b", speed: 2e6)]),
+                                               width: 404, unit: unit, measureRow: realMeasure, measureTitle: measureTitle)
+                XCTAssertEqual(fits(r, "a"), expected, "\(unit): \(text)")
+            }
         }
     }
 
@@ -92,11 +121,11 @@ final class InWindowLayoutTests: XCTestCase {
 
     func testLongestMeasuredFinderStatusStillFits() {
         // Gemessen: „1,22 GB von 6,44 GB - weniger als eine Minute“ endet bei 315,6 pt.
-        // Mit echter Schrift ist die breiteste Vorlage („8.889 MB/s“) knapp 63 pt breit.
+        // Mit echter Schrift ist die Vorlage („88,8 MB/s“) 56 pt breit.
         let realMeasure: (String) -> CGFloat = { ceil(($0 as NSString).size(withAttributes: [.font: InWindowFonts.row]).width) }
         let r = InWindowLayout.compute(window: window([op("a", speed: 1e6, textMaxX: 315.6), op("b", speed: 2e6)]),
                                        width: 404, unit: .megabytes, measureRow: realMeasure, measureTitle: measureTitle)
-        XCTAssertEqual(r.rows.map(\.id), ["a", "b"])
+        XCTAssertEqual(r.rows.filter(\.fits).map(\.id), ["a", "b"])
     }
 
     func testOperationWithoutLayoutHasNoRowLabel() {

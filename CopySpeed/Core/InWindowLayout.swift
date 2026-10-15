@@ -23,6 +23,12 @@ enum InWindowLayout {
         let text: String
         let trailingX: CGFloat
         let centerY: CGFloat
+        /// Bis hierhin darf Finders Statustext reichen, damit das Label daneben passt (fensterrelativ).
+        /// Wird auch beim schnellen Nachprüfen zwischen zwei Abfragen verwendet.
+        let maxStatusTextX: CGFloat
+        /// Passt gerade neben den Finder-Statustext. Ob das Label gezeigt wird, entscheidet `RowVisibility`
+        /// (sofort ausblenden, erst nach stabiler Lage wieder einblenden).
+        let fits: Bool
     }
 
     struct Result: Equatable {
@@ -31,8 +37,8 @@ enum InWindowLayout {
     }
 
     /// Abstand vom rechten Fensterrand – gilt für Titel- und Statuszeilen.
-    /// Knapp bemessen: Finders längster üblicher Statustext („… – weniger als eine Minute“)
-    /// endet bei ca. 316 pt; mit 12 + 6 pt bleibt für „8.889 MB/s“ noch rund 7 pt Reserve.
+    /// Knapp bemessen: Finders übliche Statustexte enden bei ca. 316–326 pt
+    /// („220,5 MB von 3,92 GB – weniger als eine Minute“); mit 12 + 6 pt passt „88,8 MB/s“ bis 330 pt.
     static let rightInset: CGFloat = 12
     /// Mindestabstand zwischen Finder-Statustext und unserer Geschwindigkeit
     static let rowGap: CGFloat = 6
@@ -73,11 +79,10 @@ enum InWindowLayout {
         guard ops.count > 1 else { return Result(title: title, rows: []) }
 
         // In der Statuszeile ist wenig Platz → eine Einheit, kompaktes Format.
-        // Platz für den breitesten realistischen Wert prüfen („1.250 MB/s“, „9.999 Mbit/s“, „8.889 MB/s“),
-        // nicht für den aktuellen – sonst springt das Label ein und aus, sobald sich die Zahl ändert.
-        let templateWidth = [1_249.9e6, 8_888.8e6]
-            .map { measureRow(SpeedFormat.speed($0, unit: singleUnit, compact: true)) }
-            .max() ?? 0
+        // Gegen die breiteste kompakte Form prüfen („88,8 MB/s“ bzw. „888 Mbit/s“), nicht gegen den aktuellen
+        // Wert – sonst springt das Label ein und aus, sobald sich die Zahl ändert.
+        let templateWidth = measureRow(SpeedFormat.speed(singleUnit == .megabits ? 111e6 : 88.8e6,
+                                                         unit: singleUnit, compact: true))
         let rows: [RowLabel] = ops.compactMap { op in
             guard let layout = op.layout else { return nil }
             // Weggescrollte Zeilen: AX meldet sie an ihrer virtuellen Position, z. B. in der Titelzeile.
@@ -86,9 +91,9 @@ enum InWindowLayout {
                 return nil
             }
             let text = SpeedFormat.speed(op.speed, unit: singleUnit, compact: true)
-            let width = max(measureRow(text), templateWidth)
-            guard layout.statusTextMaxX + rowGap + width <= trailingX else { return nil }
-            return RowLabel(id: op.id, text: text, trailingX: trailingX, centerY: layout.statusMidY)
+            let maxStatusTextX = trailingX - rowGap - max(measureRow(text), templateWidth)
+            return RowLabel(id: op.id, text: text, trailingX: trailingX, centerY: layout.statusMidY,
+                            maxStatusTextX: maxStatusTextX, fits: layout.statusTextMaxX <= maxStatusTextX)
         }
         return Result(title: title, rows: rows)
     }

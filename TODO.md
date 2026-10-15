@@ -109,6 +109,12 @@ Datenquellen (**Stand nach Spikes 2026-10-08**):
 - [x] Beobachtet (Diagnose-Log, lokales HFS+-Disk-Image): 2026-10-08 viele 100-KB-Dateien ~12 MB/s
       (Finder-Overhead pro Datei), 10-MB-Dateien ~420 MB/s; 2026-10-13 am Ende einer Einzelkopie zeigt der
       Finder kurz „Kopieren von 0 Objekten nach …“.
+- [x] Bug (gemeldet 2026-10-15, Roman): Bei 3 parallelen Kopien nur eine Zeilen-Zahl. Ursache: der Review-Fix
+      „größter Statustext je Vorgang“ sperrte eine Zeile dauerhaft, sobald einmal ein langer Text kam
+      („220,5 MB von 3,92 GB …“ ≈ 326 pt, „Verbleibende Zeit berechnen …“ ≈ 365 pt). Ersetzt durch Hysterese
+      (`RowVisibility`: sofort aus, nach 3 passenden Abfragen wieder an) + Nachprüfen sichtbarer Zeilen 10 ×/s.
+      Vorlagen „88,8 MB/s“ (56 pt) / „888 Mbit/s“ (60 pt); kompakt ab 1 GB/s → „1,25 GB/s“, ab 1 Gbit/s → „2,1 Gbit/s“.
+      AX-Textende = Schriftbreite (11 pt) + ≈ 11,6 pt Versatz; Grenze MB/s ≤ 330 pt, Mbit/s ≤ 326 pt.
 - [ ] Offen: Statustext-Parser kennt nur „von“/„of“ → Geschwindigkeit nur bei deutscher/englischer
       Systemsprache. Idee: Bytes sprachunabhängig aus den beiden Zahl+Einheit-Paaren lesen.
 

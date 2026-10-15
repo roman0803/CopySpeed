@@ -1,5 +1,20 @@
 # Changelog
 
+## [Unveröffentlicht]
+
+### Behoben
+- Bei mehreren gleichzeitigen Kopien fehlte die Geschwindigkeit am Ende mancher Statuszeilen dauerhaft.
+  Ursache: CopySpeed merkte sich je Kopie den längsten jemals gesehenen Finder-Text (z. B. „Verbleibende Zeit
+  berechnen …“ am Anfang) und blendete die Zahl danach nie wieder ein. Jetzt zählt der aktuelle Text: Die Zahl
+  verschwindet sofort, wenn der Text zu lang wird, und kommt zurück, sobald er 1–1,5 s lang passt.
+- Mit der Einheit „Mbit/s“ erschien in den Statuszeilen praktisch nie eine Zahl (Platz für „8.888 Mbit/s“
+  reservierte zu viel). Jetzt kompakt ab 1 Gbit/s („2,1 Gbit/s“).
+- Wird Finders Text neben einer sichtbaren Zahl länger, verschwindet die Zahl innerhalb von ~0,1 s statt erst
+  nach bis zu 0,5 s.
+
+### Geändert
+- Kompaktes Format in den Statuszeilen ab 1 GB/s: „1,25 GB/s“ statt „1.250 MB/s“.
+
 ## [0.2.0] – 2026-10-13
 
 ### Neu

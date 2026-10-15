@@ -19,8 +19,10 @@
 		B0DFBBAC9A5ED97161B54D48 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DDFC8E6B414856AA5D3C22 /* Preferences.swift */; };
 		B9D4154006FE5CAAA34AB180 /* SpeedFormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B173CAF2B6C410D96726C4A /* SpeedFormatTests.swift */; };
 		CFC6DB440AAC23B5A093DA3B /* SpeedFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA5AA2D7B23CBEF6D6B7944 /* SpeedFormat.swift */; };
+		DA22B4F29B14A94256AB59E5 /* RowVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCDDFEF031F063ACECF0ED7 /* RowVisibility.swift */; };
 		DB22ACE1A8FBE32A64282443 /* ProgressTextParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78D144B9A37466D1428135A /* ProgressTextParserTests.swift */; };
 		DD1F322740510C5953DD4A02 /* CopySpeedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4241BEF7CBDE9719D9478C /* CopySpeedApp.swift */; };
+		DED3D53AD1550AED9F1DB579 /* RowVisibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CB31C98AED6B6172EC3EBB /* RowVisibilityTests.swift */; };
 		E70779A37583D2AACEC19A4F /* AX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A414543F478510B56871ECB /* AX.swift */; };
 		E71BFC4895B463B3DC79F64A /* SpeedTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62D3D86EEA9247A267723C0 /* SpeedTracker.swift */; };
 		ECE4C48C667006A3940D99DE /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9160C8F4336BA127E9A7B758 /* DebugLog.swift */; };
@@ -49,6 +51,7 @@
 		8258400C2E7E1BA95AFA1241 /* InWindowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InWindowLayout.swift; sourceTree = "<group>"; };
 		8C2A2CAA2912AB55820BBAB0 /* FinderCopyReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderCopyReader.swift; sourceTree = "<group>"; };
 		9160C8F4336BA127E9A7B758 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
+		91CB31C98AED6B6172EC3EBB /* RowVisibilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowVisibilityTests.swift; sourceTree = "<group>"; };
 		A0B6A36CBC7F9EE7A5A1BF22 /* CopyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyMonitor.swift; sourceTree = "<group>"; };
 		A6B9C153388FCF9150F90BB1 /* SpeedTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedTrackerTests.swift; sourceTree = "<group>"; };
 		AED85FEB6E38BF2F1C67463B /* ProgressTextParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTextParser.swift; sourceTree = "<group>"; };
@@ -56,6 +59,7 @@
 		E340423B88F62FCA4CDAA4B3 /* CopySpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CopySpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3F0485BBA148021510DCE3B /* InWindowLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InWindowLayoutTests.swift; sourceTree = "<group>"; };
 		E78D144B9A37466D1428135A /* ProgressTextParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTextParserTests.swift; sourceTree = "<group>"; };
+		ECCDDFEF031F063ACECF0ED7 /* RowVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowVisibility.swift; sourceTree = "<group>"; };
 		FC4241BEF7CBDE9719D9478C /* CopySpeedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopySpeedApp.swift; sourceTree = "<group>"; };
 		FE8828E3217E172B1248A9F3 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +73,7 @@
 				8258400C2E7E1BA95AFA1241 /* InWindowLayout.swift */,
 				81DDFC8E6B414856AA5D3C22 /* Preferences.swift */,
 				AED85FEB6E38BF2F1C67463B /* ProgressTextParser.swift */,
+				ECCDDFEF031F063ACECF0ED7 /* RowVisibility.swift */,
 				3AA5AA2D7B23CBEF6D6B7944 /* SpeedFormat.swift */,
 				B62D3D86EEA9247A267723C0 /* SpeedTracker.swift */,
 			);
@@ -110,6 +115,7 @@
 			children = (
 				E3F0485BBA148021510DCE3B /* InWindowLayoutTests.swift */,
 				E78D144B9A37466D1428135A /* ProgressTextParserTests.swift */,
+				91CB31C98AED6B6172EC3EBB /* RowVisibilityTests.swift */,
 				1B173CAF2B6C410D96726C4A /* SpeedFormatTests.swift */,
 				A6B9C153388FCF9150F90BB1 /* SpeedTrackerTests.swift */,
 			);
@@ -238,6 +244,7 @@
 			files = (
 				1BB05C9A1D95F592B3946BEA /* InWindowLayoutTests.swift in Sources */,
 				DB22ACE1A8FBE32A64282443 /* ProgressTextParserTests.swift in Sources */,
+				DED3D53AD1550AED9F1DB579 /* RowVisibilityTests.swift in Sources */,
 				B9D4154006FE5CAAA34AB180 /* SpeedFormatTests.swift in Sources */,
 				339B6DB00C70A000AE1385ED /* SpeedTrackerTests.swift in Sources */,
 			);
@@ -258,6 +265,7 @@
 				71739CF434A3C274FE93F4FE /* OverlayView.swift in Sources */,
 				B0DFBBAC9A5ED97161B54D48 /* Preferences.swift in Sources */,
 				637FD1BD3F6B1DA51219FF5F /* ProgressTextParser.swift in Sources */,
+				DA22B4F29B14A94256AB59E5 /* RowVisibility.swift in Sources */,
 				CFC6DB440AAC23B5A093DA3B /* SpeedFormat.swift in Sources */,
 				E71BFC4895B463B3DC79F64A /* SpeedTracker.swift in Sources */,
 			);
