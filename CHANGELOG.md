@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unveröffentlicht]
+## [0.2.1] – 2026-10-15
 
 ### Behoben
 - Bei mehreren gleichzeitigen Kopien fehlte die Geschwindigkeit am Ende mancher Statuszeilen dauerhaft.
@@ -46,5 +46,6 @@ Erste Version.
 - Einheit wählbar (MB/s, Mbit/s, beides), Gesamtgeschwindigkeit in der Menüleiste, Start bei Anmeldung.
 - Getestet mit SMB-Netzlaufwerk, externer USB-Platte und lokalen Kopien.
 
+[0.2.1]: https://github.com/roman0803/CopySpeed/releases/tag/v0.2.1
 [0.2.0]: https://github.com/roman0803/CopySpeed/releases/tag/v0.2.0
 [0.1.0]: https://github.com/roman0803/CopySpeed/releases/tag/v0.1.0

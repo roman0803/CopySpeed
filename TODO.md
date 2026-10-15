@@ -145,6 +145,7 @@ Datenquellen (**Stand nach Spikes 2026-10-08**):
 - [x] DMG (create-dmg) + öffentliches Repo github.com/roman0803/CopySpeed (MIT),
       Release v0.1.0 am 2026-10-08.
 - [x] Release v0.2.0 am 2026-10-13 (Anzeige im Kopierfenster + Schublade).
+- [x] Release v0.2.1 am 2026-10-15 (Fix: Zeilen-Zahlen bei mehreren Kopien, Mbit/s-Zeilen).
 - [ ] Developer-ID-Zertifikat + Notarisierung (aktuell nur Apple Development →
       Gatekeeper-Warnung auf fremden Macs).
 - [ ] Optional: Sparkle-Updates.
